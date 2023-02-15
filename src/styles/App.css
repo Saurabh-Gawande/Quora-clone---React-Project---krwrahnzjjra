@@ -1,0 +1,12 @@
+.App {
+    margin: 0;
+    background-color: rgb(241, 241, 241);
+    height: auto;
+    width: auto;
+}
+
+.quora-content{
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+}

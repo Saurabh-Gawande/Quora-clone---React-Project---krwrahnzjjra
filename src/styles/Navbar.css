@@ -1,0 +1,92 @@
+.qheader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1px;
+    background-color: white;
+    width: 100%;
+    position: sticky;
+    z-index: 1000;
+    top: 0;
+    box-shadow: 0px 5px 8px -9px rgba(0, 0, 0, 0.5);
+}
+
+.qheader_logo >img {
+height: 30px;
+margin-right: 20px;
+}
+
+.qheader_icons{
+    display: flex;
+    margin-right: 20px;
+}
+
+.qheader_icon > .MuiSvgIcon-root:hover{
+  color: #8f1f1b;
+   border-radius: 10px;
+  background-color: lightgray;
+ 
+}
+
+.qheader_icon > .MuiSvgIcon-root {
+  color: grey;
+  cursor: pointer;
+  font-size: xx-large ;
+  padding: 5px 20px;
+}
+
+.qheader_search {
+    display: flex;
+    align-items: center;
+    border: 1px solid lightgrey;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.qheader_search > input {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    color: rgba(49, 49, 49);
+}
+.qheader_search > .MuiSvgIcon-root {
+    color: grey;
+}
+
+.qHeader_rem{
+    display: flex;
+    align-items: center;
+    margin-left: 25px;
+}
+.MuiAvatar-root {
+  cursor: pointer;
+}
+/* .MuiAvatar-root:hover {
+  color: #8f1f1b;
+} */
+.qHeader_rem > .MuiSvgIcon-root {
+  cursor: pointer;
+  font-size: xx-large;
+  color: grey;
+  border-radius: 5px;
+   padding: 5px 15px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.qHeader_rem > .MuiSvgIcon-root:hover {
+  color: #8f1f1b;
+  background-color: lightgray;
+}
+
+.qHeader_rem > .MuiButton-root {
+    color: white;
+    text-transform: inherit;
+    background: #8f1f1b;
+    border-radius: 20px;
+  cursor: pointer; 
+}
+.qHeader_rem > .MuiButton-root:hover {
+   color: white;
+   background-color: #b92b27;
+}
+

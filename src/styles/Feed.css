@@ -1,0 +1,9 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.feed {
+    display: flex;
+    flex-direction: column;
+    flex: 0.6;
+}
