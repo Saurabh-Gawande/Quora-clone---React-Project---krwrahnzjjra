@@ -1,13 +1,41 @@
 import { ArrowForwardIos } from '@material-ui/icons'
-import React from 'react'
+import React, { useState } from 'react'
+import { auth, provider } from '../feactures/firebase';
 import '../auth/Login.css'
 
-function Login({handleSignIn}) {
+function Login() {
+ const [email , setEmail] = useState("");
+ const [password , setPassword] = useState("");
 
+ const signIn = () => {
+  auth.signInWithPopup(provider).catch((e) => {
+    alert(e.message);
+  });
+  console.log(auth);
+};
+
+const handleSignIn = (e) => {
+  e.preventDefault();
+  auth.signInWithEmailAndPassword(email, password)
+  .then((auth) => {
+      console.log(auth);
+    })
+    .catch((e) => {alert(e.message)});
+    
+};
+
+const registerSignIn = (e) => {
+  e.preventDefault();
+
+  auth.createUserWithEmailAndPassword(email, password)
+    .then((auth) => {
+      if (auth) {
+        console.log(auth);
+      }
+    })
+    .catch((e) => alert(e.message));
+};
   
-
- 
-
   return (
     <div className="login">
     <div className="login__container">
@@ -32,7 +60,7 @@ function Login({handleSignIn}) {
               src="https://media-public.canva.com/MADnBiAubGA/3/screen.svg"
               alt=""
             />
-            <p /*onClick={signIn}*/>Continue With Google</p>
+            <p onClick={signIn}>Continue With Google</p>
           </div>
           <div className="login__authOption">
             <img
@@ -67,16 +95,16 @@ function Login({handleSignIn}) {
           <div className="login__inputFields">
             <div className="login__inputField">
               <input
-                // value={email}
-                // onChange={(e) => setEmail(e.target.value)}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 type="text"
                 placeholder="Email"
               />
             </div>
             <div className="login__inputField">
               <input
-                // value={password}
-                // onChange={(e) => setPassword(e.target.value)}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 type="password"
                 placeholder="Password"
               />
@@ -86,7 +114,7 @@ function Login({handleSignIn}) {
             <small>Forgot Password?</small>
             <button onClick={handleSignIn}>Login</button>
           </div>
-          <button /*onClick={registerSignIn}*/>Register</button>
+          <button onClick={registerSignIn}>Register</button>
         </div>
       </div>
       <div className="login__lang">

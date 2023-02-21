@@ -1,9 +1,35 @@
-import React from 'react'
+import React, { useState } from 'react'
 import '../styles/Navbar.css';
-import { AssignmentTurnedInOutlined, FeaturedPlayListOutlined, Home, Language, NotificationsOutlined, PeopleAltOutlined, Search } from '@material-ui/icons'
-import { Avatar, Button } from '@material-ui/core'
+import { AssignmentTurnedInOutlined, ExpandMore, FeaturedPlayListOutlined, Home, Language, NotificationsOutlined, PeopleAltOutlined, Search } from '@material-ui/icons'
+import { Avatar, Button, Input } from '@material-ui/core'
+import { Link } from '@material-ui/icons';
+import { useSelector } from 'react-redux';
+import { selectUser } from './UserSlice';
+import db, { auth } from '../feactures/firebase';
+import Modal from 'react-modal';
+import firebase from 'firebase/compat';
 
 function Navbar() {
+   const user = useSelector(selectUser);
+   
+   const [openModal , setopenModal] = useState(false);
+   const [input , setInput] = useState("");
+   const [inputUrl , setInputUrl] =useState ("");
+
+   function handleQuestion(e){
+    e.preventDefault();
+
+    setopenModal(false);
+    db.collection('questions').add({
+      question : input,
+      imgUrl : inputUrl,
+      timestamp : firebase.firestore.FieldValue.serverTimestamp(), 
+      user : user
+    })
+    setInput("")
+    setInputUrl("")
+   }
+
   return (
     <div className='qheader'>
       <div className='qheader_logo'>
@@ -31,9 +57,63 @@ function Navbar() {
         <input type="text" placeholder='Search Quora' />
       </div>
       <div className='qHeader_rem'>
-            <Avatar/>
+            <Avatar onClick={()=>auth.signOut()} src={user.photo} /> 
             <Language/>
-            <Button>Add Question</Button>
+            <Button onClick={() =>setopenModal(true)}>Add Question</Button>
+            <Modal
+             ariaHideApp={false}
+              isOpen={openModal}
+              onRequestClose ={()=>setopenModal(false)}
+              shouldCloseOnOverlayClick= {false}
+              style= {{
+              overlay :{
+               width: 700,
+              height: 600,
+              backgroundColor: "rgba(0,0,0,0.8)",
+              zIndex: "1000",
+              top: "50%",
+              left: "50%",
+              marginTop: "-300px",
+              marginLeft: "-350px",
+                } 
+              }}
+            >
+              <div className='modal-title'>
+                <div className='heading'>
+                <h5>Question</h5>
+                <h5>Share Link</h5>
+                </div>
+                <div className='modal-info'>
+                  <Avatar className='avatar' src={user.photo}/>
+                  <p>{user.displayName ? user.displayName : user.email} asked</p>
+                  <div className='modal-scope'>
+                    <PeopleAltOutlined/>
+                    <p>Public</p>
+                    <ExpandMore/>
+                  </div>
+                </div>
+                <div className='modal-field'>
+                  <Input
+                  required
+                   value={input}
+                   onChange={(e)=>{setInput(e.target.value)}}
+                   type='text'
+                   placeholder="Start your question with 'What','Why','How'"/>
+                  <div className='modal-fieldLink'>
+                    <Link/>
+                    <Input 
+                     value={inputUrl}
+                      onChange={(e)=>{setInputUrl(e.target.value)}}
+                     type='text' 
+                    placeholder='Optional : include a link that give context'/>
+                  </div>
+                </div>
+                <div className='modal-btn'>
+                <button onClick={()=>setopenModal(false)} className='cancle'>Cancle</button>
+                <button type='submit' className='add' onClick={handleQuestion}>Add Question</button>
+                </div>
+              </div>
+            </Modal>
       </div>
     </div>
   )

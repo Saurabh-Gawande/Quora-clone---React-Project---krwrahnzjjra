@@ -90,3 +90,104 @@ margin-right: 20px;
    background-color: #b92b27;
 }
 
+.modal-title {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  margin-bottom: 5px;
+  border-bottom: 1px solid rgba(187, 187, 187, 0.5);
+}
+.heading{
+  margin-left: 10px;
+  display: flex;
+  flex-direction: row;
+}
+.heading > h5{
+  color: gray;
+  font-size: 20px;
+  cursor: pointer;
+  font-weight: 500;
+  margin-right: 30px;
+}
+
+.heading > h5:hover{
+ color: #b92b27;
+}
+
+.modal-info{
+ display: flex;
+ align-items: center;
+ margin-top: 30px;
+}
+
+.modal-info > p{
+  margin-left: 10px;
+  font-size: small;
+  color: gray;
+}
+
+.modal-info > .modal-scope{
+  display: flex;
+  align-items: center;
+  color: rgb(98, 98, 98);
+  padding: 5px;
+  margin-left: 10px;
+  background-color: rgb(230, 230, 230);
+  border-radius: 33px;
+  cursor: pointer;
+}
+
+.modal-field{
+ display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+  flex: 1;
+}
+
+.modal-field > .modal-fieldLink{
+  color: gray;
+  display: flex;
+  margin-top: 10px;
+  align-items: center;
+}
+
+.modal-field > .modal-fieldLink > input {
+  flex: 1;
+  border: none;
+  outline: none;
+  margin-left: 5px;
+}
+
+.modal-btn{
+  display: flex;
+  align-items: center;
+  margin-top: 242px;
+  margin-right: -20px;
+  border-top: 1px solid lightgray;
+}
+
+.modal-btn > .cancle {
+  margin-left: auto;
+  border: none;
+  margin-top: 5px;
+  outline: none;
+  color: gray;
+  font-weight: 500;
+  padding: 10px;
+  margin-right: 10px;
+  border-radius: 33px;
+  cursor: pointer;
+}
+
+.modal-btn > .add {
+ border: none;
+  outline: none;
+  margin-top: 5px;
+  background-color: rgb(0, 64, 255);
+  color: white;
+  font-weight: 700;
+  padding: 10px;
+  margin-right: 10px;
+  border-radius: 33px;
+  cursor: pointer;
+}
