@@ -16,8 +16,9 @@ function Navbar() {
    const [input , setInput] = useState("");
    const [inputUrl , setInputUrl] =useState ("");
 
+   const isButtonDisabled = input.length < 3 ; 
+
    function handleQuestion(e){
-    e.preventDefault();
 
     setopenModal(false);
     db.collection('questions').add({
@@ -60,6 +61,8 @@ function Navbar() {
             <Avatar onClick={()=>auth.signOut()} src={user.photo} /> 
             <Language/>
             <Button onClick={() =>setopenModal(true)}>Add Question</Button>
+
+
             <Modal
              ariaHideApp={false}
               isOpen={openModal}
@@ -110,7 +113,8 @@ function Navbar() {
                 </div>
                 <div className='modal-btn'>
                 <button onClick={()=>setopenModal(false)} className='cancle'>Cancle</button>
-                <button type='submit' className='add' onClick={handleQuestion}>Add Question</button>
+                
+                <button type='submit' className='add' disabled={isButtonDisabled} onClick={handleQuestion}>Add Question</button>
                 </div>
               </div>
             </Modal>

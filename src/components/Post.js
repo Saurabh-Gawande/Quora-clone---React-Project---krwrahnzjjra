@@ -20,9 +20,10 @@ function Post({ Id, question, imageUrl, timestamp, users }) {
     const [answer , setAnswer] = useState("");
     const [getAnswer , setGetAnswer] = useState ([]);
 
-    const questionName = useSelector(selectQuestionName);
-    const questionId = useSelector(selectQuestionId);
+    // const questionName = useSelector(selectQuestionName);
+    // const questionId = useSelector(selectQuestionId);
     
+     const isDisabled = answer.length < 3;
 
     const dispatch = useDispatch();
 
@@ -112,7 +113,7 @@ function Post({ Id, question, imageUrl, timestamp, users }) {
         </div>  
           <div className='modal-button'>
           <button onClick={()=>setModalOpen(false)} className='cancle'>Cancle</button>
-          <button type='submit' className='add' onClick={handleAnswer}>Add Answer</button>
+          <button type='submit' className='add' onClick={handleAnswer} disabled={isDisabled}>Add Answer</button>
           </div>        
             </Modal>
             
